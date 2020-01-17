@@ -1,6 +1,6 @@
 var inputData = document.querySelector("input[type ='text']");
 var ulSpisok = document.querySelector("ul");
-var liSpisok = document.querySelector("li");
+var liSpisok = document.getElementsByTagName("li");
 var spans = document.getElementsByTagName("span");
 var saveBtn = document.getElementById("save");
 var clearBtn = document.getElementById("clear");
@@ -25,16 +25,13 @@ window.onclick = function (event){
     }
 }
 
-// function lineTrough(){
-//     for(let li in liSpisok){
-//         li.addEventListener('click', function(){
-//             li.style.textDecoration = "line-through";
-//             event.stopPropagation();
-//         })
-//     }
-// }
-
-// lineTrough();
+function LineTrough(){
+    for(let li of liSpisok){
+        li.addEventListener('click', function(){
+            li.style.textDecoration = "line-through";
+        })
+    }
+}
 
 function deleteTodo(){
     for(let span of spans){
@@ -61,6 +58,7 @@ inputData.addEventListener('keypress', function(keyPressed){
         spanNew.innerHTML = 'Удалить';
         var dateNew = (" " +d.getDate()+ " " + month[d.getMonth()]
         + " " + d.getFullYear() + " г.");
+    
        
         var newTodo = this.value;
         this.value = " ";
@@ -68,6 +66,7 @@ inputData.addEventListener('keypress', function(keyPressed){
         ulSpisok.appendChild(liNew).append(spanNew, newTodo, dateNew);
         }    
         deleteTodo();
+        LineTrough();
     }
 })
 
@@ -82,4 +81,5 @@ clearBtn.addEventListener('click', function(){
 
 deleteTodo();
 loadTodo();
+LineTrough();
 
