@@ -52,7 +52,7 @@ input{
     font-style: italic;
 }
 
-#list li span{
+#list li .delete-button{
     color: red;
     font-size: 16px;
     padding:0 10px;
@@ -60,7 +60,7 @@ input{
     margin-right: 10px;
 }
 
-#list li span:hover{
+#list li .delete-button:hover{
     background-color: red;
     color: #fff;
 }
@@ -136,4 +136,8 @@ margin:0 20px;
     font-size: 28px;
     font-weight: bold;
     cursor: pointer;
+}
+.node-date{
+    color: rgb(0, 38, 255);
+    font-size: 17px;
 }

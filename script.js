@@ -1,7 +1,7 @@
 var inputData = document.querySelector("input[type ='text']");
 var ulSpisok = document.querySelector("ul");
 var liSpisok = document.getElementsByTagName("li");
-var spans = document.getElementsByTagName("span");
+var spans = document.getElementsByClassName("delete-button");
 var saveBtn = document.getElementById("save");
 var clearBtn = document.getElementById("clear");
 var d = new Date();
@@ -28,7 +28,8 @@ window.onclick = function (event){
 function LineTrough(){
     for(let li of liSpisok){
         li.addEventListener('click', function(){
-            li.style.textDecoration = "line-through";
+            this.querySelector('.node-value').style.textDecoration = "line-through";
+            //li.style.textDecoration = "line-through";
         })
     }
 }
@@ -54,17 +55,25 @@ function loadTodo(){
 inputData.addEventListener('keypress', function(keyPressed){
     if(keyPressed.which === 13){
         var liNew = document.createElement("li");
-        var spanNew = document.createElement("span");
-        spanNew.innerHTML = 'Удалить';
+        var deleteSpan = document.createElement("span");
+        var valueSpan = document.createElement('span');
+        var dateSpan = document.createElement("span");
+
+        deleteSpan.innerHTML = 'Удалить';
+        deleteSpan.className = 'delete-button';
+
         var dateNew = (" " +d.getDate()+ " " + month[d.getMonth()]
         + " " + d.getFullYear() + " г.");
-    
+        dateSpan.textContent = dateNew;
+        dateSpan.className = "node-date";
        
         var newTodo = this.value;
         this.value = " ";
+        valueSpan.textContent = newTodo;
+        valueSpan.className = 'node-value';
         if(newTodo.length > 0 && newTodo !== " "){
-        ulSpisok.appendChild(liNew).append(spanNew, newTodo, dateNew);
-        }    
+            ulSpisok.appendChild(liNew).append(deleteSpan, valueSpan, dateSpan);
+        }
         deleteTodo();
         LineTrough();
     }
